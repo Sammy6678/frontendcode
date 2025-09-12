@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 
 // Predefined list of Bootstrap background color classes
 const colorClasses = [
@@ -13,10 +13,10 @@ const colorClasses = [
 const CourseCard = ({ course }) => {
   const [showLessons, setShowLessons] = useState(false);
 
-  // Assign a random color for the card based on the course's unique id
-  const cardColorClass = useMemo(() => {
+  // Pick a random color once when the component mounts
+  const [cardColorClass] = useState(() => {
     return colorClasses[Math.floor(Math.random() * colorClasses.length)];
-  }, [course.courseId]);
+  });
 
   const toggleLessons = () => {
     setShowLessons(!showLessons);
